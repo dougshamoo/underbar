@@ -210,7 +210,7 @@
     if (iterator === undefined) {
       iterator = function(ele) { return ele; };
     }
-    
+
     return _.reduce(collection, function(hasPassed, item) {
       if (hasPassed) {
         return true;
@@ -239,6 +239,17 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    var length = arguments.length;
+    
+    if (length < 2) return obj;
+
+    for (var i=1; i < length; i++) {
+      _.each(arguments[i], function(val, key) {
+        obj[key] = val;
+      });
+    }
+
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
