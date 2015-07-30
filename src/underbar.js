@@ -84,7 +84,7 @@
       if (test(ele)) {
         passed.push(ele);
       }
-    })
+    });
     return passed;
   };
 
@@ -99,6 +99,14 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var result = [];
+    _.each(array, function(ele) {
+      if (_.indexOf(result, ele) === -1) {
+        result.push(ele);
+      }
+    });
+
+    return result;
   };
 
 
