@@ -194,7 +194,7 @@
     if (iterator === undefined) {
       iterator = function(ele) { return ele; };
     }
-    
+
     return _.reduce(collection, function(hasPassed, item) {
       if (hasPassed) {
         return Boolean(iterator(item));
@@ -207,6 +207,16 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (iterator === undefined) {
+      iterator = function(ele) { return ele; };
+    }
+    
+    return _.reduce(collection, function(hasPassed, item) {
+      if (hasPassed) {
+        return true;
+      }
+      return Boolean(iterator(item));
+    }, false);
   };
 
 
